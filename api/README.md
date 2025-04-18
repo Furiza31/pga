@@ -1,91 +1,134 @@
-# Conception et Développement d'une Plateforme de Gestion Associative avec Base de Données Relationnelle
+# Student Association Management Platform API
 
-## 📖 Documentation de l'API
+A RESTful API for managing student associations, including users, events, projects, and forum discussions.
 
-### 🔐 Authentification & Rôles
+## Features
 
-| Méthode | Endpoint              | Description                                 |
-| ------- | --------------------- | ------------------------------------------- |
-| POST    | `/api/register`       | Créer un compte utilisateur                 |
-| POST    | `/api/login`          | Connexion de l'utilisateur                  |
-| POST    | `/api/logout`         | Déconnexion                                 |
-| GET     | `/api/user`           | Obtenir les infos de l’utilisateur connecté |
-| GET     | `/api/users/roles`    | Lister les rôles (admin, membre)            |
-| PUT     | `/api/users/:id/role` | Modifier le rôle d’un utilisateur           |
+- **User Authentication**: Secure registration and login with JWT
+- **User Management**: Create, read, update, delete operations for users
+- **Event Management**: Create and manage association events
+- **Project Collaboration**: Create projects and manage team members
+- **Forum Discussions**: Categories, threads and replies for community discussions
 
----
+## Tech Stack
 
-### 👥 Gestion des Membres
+- Node.js with Express
+- TypeScript
+- PostgreSQL database
+- JWT for authentication
+- Docker for containerization
 
-| Méthode | Endpoint           | Description             |
-| ------- | ------------------ | ----------------------- |
-| GET     | `/api/members`     | Lister tous les membres |
-| GET     | `/api/members/:id` | Détails d’un membre     |
-| POST    | `/api/members`     | Ajouter un membre       |
-| PUT     | `/api/members/:id` | Modifier un membre      |
-| DELETE  | `/api/members/:id` | Supprimer un membre     |
+## Prerequisites
 
----
+- Node.js (v14+)
+- npm or yarn
+- Docker and Docker Compose (for containerized development)
 
-### 📅 Gestion des Événements
+## Getting Started
 
-| Méthode | Endpoint          | Description                |
-| ------- | ----------------- | -------------------------- |
-| GET     | `/api/events`     | Lister tous les événements |
-| GET     | `/api/events/:id` | Détails d’un événement     |
-| POST    | `/api/events`     | Créer un événement         |
-| PUT     | `/api/events/:id` | Modifier un événement      |
-| DELETE  | `/api/events/:id` | Supprimer un événement     |
+### Using Docker (Recommended)
 
----
+1. Clone the repository
+2. Start the Docker containers:
 
-### 📁 Gestion des Projets Collaboratifs
+```bash
+docker-compose up -d
+```
 
-| Méthode | Endpoint                              | Description                     |
-| ------- | ------------------------------------- | ------------------------------- |
-| GET     | `/api/projects`                       | Lister tous les projets         |
-| GET     | `/api/projects/:id`                   | Détails d’un projet             |
-| POST    | `/api/projects`                       | Créer un projet                 |
-| PUT     | `/api/projects/:id`                   | Modifier un projet              |
-| DELETE  | `/api/projects/:id`                   | Supprimer un projet             |
-| POST    | `/api/projects/:id/members`           | Attribuer un membre à un projet |
-| DELETE  | `/api/projects/:id/members/:memberId` | Retirer un membre d’un projet   |
+This will start:
 
----
+- PostgreSQL database on port 5432
+- Adminer (DB management UI) on port 8080
 
-### 💬 Forum Interne
+### Manual Setup
 
-| Méthode | Endpoint                      | Description                    |
-| ------- | ----------------------------- | ------------------------------ |
-| GET     | `/api/forum/topics`           | Lister les sujets du forum     |
-| GET     | `/api/forum/topics/:id`       | Détails d’un sujet             |
-| POST    | `/api/forum/topics`           | Créer un nouveau sujet         |
-| PUT     | `/api/forum/topics/:id`       | Modifier un sujet              |
-| DELETE  | `/api/forum/topics/:id`       | Supprimer un sujet             |
-| GET     | `/api/forum/topics/:id/posts` | Lister les messages d’un sujet |
-| POST    | `/api/forum/topics/:id/posts` | Ajouter un message à un sujet  |
-| DELETE  | `/api/forum/posts/:id`        | Supprimer un message           |
+1. Clone the repository
+2. Install dependencies:
 
----
+```bash
+npm install
+```
 
-### 🔔 Bonus
+3. Create a PostgreSQL database named `student_association`
+4. Configure your environment variables in `.env` (copy from `.env.example`)
+5. Run the development server:
 
-#### 🔄 Renouvellement d'adhésion
+```bash
+npm run dev
+```
 
-| Méthode | Endpoint                    | Description                                   |
-| ------- | --------------------------- | --------------------------------------------- |
-| POST    | `/api/members/:id/reminder` | Envoyer un rappel de renouvellement           |
-| POST    | `/api/members/:id/renew`    | Renouveler l’adhésion (peut inclure paiement) |
+## API Endpoints
 
-#### 📣 Réseaux sociaux
+### Authentication
 
-| Méthode | Endpoint                | Description                           |
-| ------- | ----------------------- | ------------------------------------- |
-| POST    | `/api/events/:id/share` | Partager un événement sur les réseaux |
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login and get JWT token
+- `GET /api/auth/me` - Get current user info
 
-#### ⭐ Évaluation post-événement
+### Users
 
-| Méthode | Endpoint                    | Description            |
-| ------- | --------------------------- | ---------------------- |
-| POST    | `/api/events/:id/feedback`  | Envoyer un retour/avis |
-| GET     | `/api/events/:id/feedbacks` | Lister les retours     |
+- `GET /api/users` - Get all users (admin only)
+- `GET /api/users/:id` - Get user by ID
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
+
+### Events
+
+- `GET /api/events` - Get all events
+- `GET /api/events/upcoming` - Get upcoming events
+- `GET /api/events/:id` - Get event by ID
+- `POST /api/events` - Create new event
+- `PUT /api/events/:id` - Update event
+- `DELETE /api/events/:id` - Delete event
+
+### Projects
+
+- `GET /api/projects` - Get all projects
+- `GET /api/projects/my-projects` - Get current user's projects
+- `GET /api/projects/:id` - Get project by ID
+- `POST /api/projects` - Create new project
+- `PUT /api/projects/:id` - Update project
+- `DELETE /api/projects/:id` - Delete project
+- `GET /api/projects/:id/members` - Get project members
+- `POST /api/projects/:id/members` - Add member to project
+- `DELETE /api/projects/:id/members/:userId` - Remove member from project
+
+### Forum
+
+- `GET /api/forum/categories` - Get all categories
+- `GET /api/forum/categories/:id` - Get category by ID
+- `POST /api/forum/categories` - Create new category (admin only)
+- `PUT /api/forum/categories/:id` - Update category (admin only)
+- `DELETE /api/forum/categories/:id` - Delete category (admin only)
+- `GET /api/forum/categories/:categoryId/threads` - Get threads in category
+- `GET /api/forum/threads/:id` - Get thread with replies
+- `POST /api/forum/threads` - Create new thread
+- `PUT /api/forum/threads/:id` - Update thread
+- `DELETE /api/forum/threads/:id` - Delete thread
+- `POST /api/forum/replies` - Create new reply
+- `PUT /api/forum/replies/:id` - Update reply
+- `DELETE /api/forum/replies/:id` - Delete reply
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm start` - Start production server
+
+### Database Migrations
+
+Database will be initialized automatically when the API starts. If changes are needed:
+
+1. Edit the migration file in `src/db/migrations/init.sql`
+2. Restart the server
+
+## Default Admin Account
+
+The system includes a default admin account for initial setup:
+
+- Email: admin@example.com
+- Password: admin123
+
+**Important**: Change this password immediately in production!
