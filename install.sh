@@ -156,24 +156,14 @@ start_docker_containers() {
 
 # Démarrage de l'API
 start_api() {
-  log "Démarrage de l'API en arrière-plan..."
-  cd api
-  npm run dev &
-  API_PID=$!
-  log_success "API démarrée avec PID: $API_PID"
-  cd ..
-  # Attendre que l'API soit prête
-  sleep 10
+  log "Pour démarrer l'API, exécutez la commande suivante dans le répertoire api:"
+  log "  ${YELLOW}cd api && npm run dev${NC}"
 }
 
 # Démarrage de l'application
 start_app() {
-  log "Démarrage de l'application frontend..."
-  cd app
-  npm run dev &
-  APP_PID=$!
-  log_success "Application frontend démarrée avec PID: $APP_PID"
-  cd ..
+  log "Pour démarrer l'application, exécutez la commande suivante dans le répertoire app:"
+  log "  ${YELLOW}cd app && npm run dev${NC}"
 }
 
 # Information finale

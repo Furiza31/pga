@@ -82,7 +82,7 @@ CREATE INDEX IF NOT EXISTS idx_forum_replies_thread_id ON forum_replies(thread_i
 -- Insert default admin user with password 'admin123'
 -- Warning: This is for initialization only, change in production!
 INSERT INTO users (name, email, password, role)
-VALUES ('Admin', 'admin@example.com', '$2b$10$8MONTRCzbPe/dPyuFWAKIuzoIAOkBUMryWg5lrfcF3kGetE6e52qa	', 'admin')
+VALUES ('Admin', 'admin@example.com', '$2b$10$lNfgZckuh3dpqXLTMe1W/uK8P7ki70Qq1lvDnICbKAFycpcRwhg8q', 'admin')
 ON CONFLICT (email) DO NOTHING;
 
 -- Insert some default forum categories
