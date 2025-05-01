@@ -6,7 +6,7 @@
 
 Si vous souhaitez lancer le projet sans problèmes, vous pouvez utiliser le script `install.sh` (pour linux) ou `install.ps1` (pour Windows) qui va tout faire pour vous.
 
-PS: Ce script a été généré par ChatGPT, nous l'avons testé et il fonctionne parfaitement.
+PS: Ce script a été généré par ChatGPT, nous l'avons testé et il fonctionne parfaitement sur linux. Mais il est possible qu'il y ait des erreurs sur Windows.
 
 ## Prérequis
 
