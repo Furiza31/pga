@@ -2,9 +2,9 @@
 
 # Setup du projet
 
-## Script généré par ChatGPT
+## Script de lancement
 
-Si vous souhaitez lancer le projet sans problèmes, vous pouvez utiliser le script `install.sh` qui va tout faire pour vous.
+Si vous souhaitez lancer le projet sans problèmes, vous pouvez utiliser le script `install.sh` (pour linux) ou `install.ps1` (pour Windows) qui va tout faire pour vous.
 
 PS: Ce script a été généré par ChatGPT, nous l'avons testé et il fonctionne parfaitement.
 
